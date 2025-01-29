@@ -124,7 +124,7 @@ source $CARGO_HOME/env
 # TODO build cuda-aware hypre when cuda enabled
 mkdir hypre_dev
 cd hypre_dev
-git clone git@github.com:hypre-space/hypre.git
+git clone https://github.com/hypre-space/hypre.git #git@github.com:hypre-space/hypre.git
 cd hypre/src
 ./configure
 make -j{num_build_cores}
@@ -133,7 +133,7 @@ cd {top_level_dir}/builds/{dir_name}
 
 # install spdlog
 mkdir spdlog_dev && cd spdlog_dev
-git clone git@github.com:gabime/spdlog.git
+git clone https://github.com/gabime/spdlog.git #git@github.com:gabime/spdlog.git
 mkdir build && cd build
 cmake ../spdlog -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE={build_type}
 make -j{num_build_cores}
@@ -142,7 +142,7 @@ cd {top_level_dir}/builds/{dir_name}
 
 # install kokkos
 mkdir kokkos_dev && cd kokkos_dev
-git clone git@github.com:kokkos/kokkos.git
+git clone https://github.com/kokkos/kokkos.git #git@github.com:kokkos/kokkos.git
 mkdir build && cd build
 {kokkos_cmake_cmd}
 make -j{num_build_cores}
@@ -160,7 +160,7 @@ cd {top_level_dir}/builds/{dir_name}
 
 # install mfem
 mkdir mfem_dev && cd mfem_dev
-git clone git@github.com:mfem/mfem.git
+git clone https://github.com/mfem/mfem.git #git@github.com:mfem/mfem.git
 mkdir build && cd build
 {mfem_cmake_cmd}
 make -j{num_build_cores}
@@ -169,7 +169,7 @@ cd {top_level_dir}/builds/{dir_name}
 
 # install pumimbbl
 mkdir pumiMBBL_dev && cd pumiMBBL_dev
-git clone git@github.com:SCOREC/pumiMBBL.git
+git clone https://github.com/SCOREC/pumiMBBL.git #git@github.com:SCOREC/pumiMBBL.git
 mkdir build && cd build
 cmake ../pumiMBBL -DCMAKE_INSTALL_PREFIX=../install -DKokkos_ROOT=../../kokkos_dev/install -DCMAKE_BUILD_TYPE={build_type}
 make -j{num_build_cores}
@@ -177,7 +177,7 @@ make install
 cd {top_level_dir}/builds/{dir_name}
 
 # install rustbca
-git clone git@github.com:lcpp-org/RustBCA.git
+git clone https://github.com/lcpp-org/RustBCA.git #git@github.com:lcpp-org/RustBCA.git
 cd RustBCA
 cargo build --release --lib -j {num_build_cores}
 mkdir include && cd include
@@ -189,7 +189,7 @@ cd {top_level_dir}/builds/{dir_name}
 
 # install hdf5
 mkdir hdf5_dev && cd hdf5_dev
-git clone git@github.com:HDFGroup/hdf5.git
+git clone https://github.com/HDFGroup/hdf5.git #git@github.com:HDFGroup/hdf5.git
 mkdir build && cd build
 cmake ../hdf5 -DCMAKE_BUILD_TYPE={build_type} -DHDF5_BUILD_EXAMPLES=OFF -DHDF5_ENABLE_PARALLEL=ON -DHDF5_BUILD_CPP_LIB=ON -DALLOW_UNSUPPORTED=ON -DCMAKE_INSTALL_PREFIX=../install -DBUILD_TESTING=OFF
 make -j{num_build_cores}
@@ -302,7 +302,7 @@ cd builds
 mkdir {dir_name}
 cd {dir_name}
 
-git clone --recurse-submodules git@github.com:lcpp-org/hpic2.git
+git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git #git@github.com:lcpp-org/hpic2.git
 mkdir build && cd build
 #cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
 cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON
