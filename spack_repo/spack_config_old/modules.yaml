@@ -1,0 +1,33 @@
+modules:
+  default:
+    enable: [lmod]
+    lmod:
+      #blacklist_implicits: true
+      hash_length: 0
+      hpic2deps:
+        autoload: 'all'
+        # No way to just load the correct gcc module, so do everything that it would do by hand.
+        conflict:
+          - 'gcc'
+        environment:
+          prepend_path:
+            LD_LIBRARY_PATH: '/usr/local/gcc/13.3.0/lib/gcc/x86_64-pc-linux-gnu/13.3.0:/usr/local/gcc/13.3.0/lib64:/usr/local/gcc/13.3.0/lib'
+            LIBRARY_PATH: '/usr/local/gcc/13.3.0/lib64:/usr/local/gcc/13.3.0/lib'
+            MANPATH: '/usr/local/gcc/13.3.0/share/man'
+            PATH: '/usr/local/gcc/13.3.0/bin'
+          append_path:
+            LD_LIBRARY_PATH: '/usr/local/mpc/1.0.3/lib:/usr/local/mpfr/4.2.1/lib:/usr/local/gmp/6.3.0/lib:/usr/local/isl/0.18/lib'
+          set:
+            CC: 'gcc'
+            F95: 'gfortran'
+      all:
+        conflict:
+          - '{name}'
+        environment:
+          set:
+            '{name}_ROOT' : '{prefix}'
+      projections:
+        # As of 5/18/2023, spack has a bug where it can't differentiate between cuda_archs in modulefiles.
+        #hpic2deps: '{name}/{compiler.name}-{compiler.version}/{^mpi.name}-{^mpi.version}/kokkos{^kokkos.variants.openmp}{^kokkos.variants.threads}-{^kokkos.variants.cuda_arch}/{^kokkos.variants.debug}'
+        hpic2deps: '{name}/{compiler.name}-{compiler.version}/{^mpi.name}-{^mpi.version}/kokkos{^kokkos.variants.openmp}{^kokkos.variants.threads}{^kokkos.variants.cuda}/{^kokkos.variants.debug}/{/hash:7}'
+        all: '{name}/{/hash}'

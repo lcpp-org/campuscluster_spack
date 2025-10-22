@@ -1,0 +1,364 @@
+packages: 
+  mpi:
+    buildable: False
+  openmpi:
+    externals:
+    - spec: "openmpi@5.0.1%gcc@13.3.0"
+      modules:
+      - openmpi/5.0.1-gcc-13.3.0
+    - spec: "openmpi@4.1.4%gcc@8.2.0"
+      modules:
+      - openmpi/4.1.4-gcc-8.2.0
+    - spec: "openmpi@4.1.0%gcc@7.2.0+pmi"
+      modules:
+      - openmpi/4.1.0-gcc-7.2.0-pmi2
+    - spec: "openmpi@4.1.0%gcc@7.2.0"
+      modules:
+      - openmpi/4.1.0-gcc-7.2.0
+    - spec: "openmpi@4.0.5%intel@18.0"
+      modules:
+      - openmpi/4.0.5-intel-18.0
+    - spec: "openmpi@4.0.5%gcc@7.2.0"
+      modules:
+      - openmpi/4.0.5-gcc-7.2.0
+    - spec: "openmpi@3.1.1%intel@18.0"
+      modules:
+      - openmpi/3.1.1-intel-18.0
+    - spec: "openmpi@3.1.1%gcc@7.2.0"
+      modules:
+      - openmpi/3.1.1-gcc-7.2.0
+  # I can't get intel-mpi to work
+  intel-mpi:
+    externals:
+    - spec: "intel-mpi@2021.14.0%intel@18.0"
+      #modules:
+              #- intel/mpi/2024.14
+      #prefix: /usr/local/intel/oneapi/mpi/2021.14.0.1/linux # None of the paths in this section exist on the ICC. 
+    - spec: "intel-mpi@2018.1.163%intel@18.0"
+      #modules:
+              #- intel/18.0
+      prefix: /usr/local/intel/parallel_studio_xe_2018/compilers_and_libraries_2018.1.163/linux/mpi/intel64
+    - spec: "intel-mpi@2018.1.163%gcc@7.2.0"
+      #modules:
+              #- intel/18.0
+      prefix: /usr/local/intel/parallel_studio_xe_2018/compilers_and_libraries_2018.1.163/linux/mpi/intel64
+  mvapich2:
+    externals:
+    - spec: "mvapich2@2.3.7%gcc@13.3.0"
+      modules:
+      - mvapich2/2.3.7-gcc-13.3.0
+    - spec: "mvapich2@2.3.6%gcc@7.2.0"
+      modules:
+      - mvapich2/2.3.6-gcc-7.2.0
+    - spec: "mvapich2@2.3.4%intel@18.0" # I can't get any of the mvapich2 intel ones working either
+      modules:
+      - mvapich2/2.3.4-intel-18.0_PMI2
+      - intel/18.0
+    - spec: "mvapich2@2.3.5%gcc@7.2.0"
+      modules:
+      - mvapich2/2.3.5-gcc-7.2.0-pmi2
+    - spec: "mvapich2@2.3.4%gcc@7.2.0"
+      modules:
+      - mvapich2/2.3.4-gcc-7.2.0_PMI2
+    - spec: "mvapich2@2.3%intel@18.0"
+      modules:
+      - mvapich2/2.3-intel-18.0
+      - intel/18.0
+    - spec: "mvapich2@2.3%gcc@7.2.0"
+      modules:
+      - mvapich2/2.3-gcc-7.2.0
+    - spec: "mvapich2@2.3rc2%intel@18.0"
+      modules:
+      - mvapich2/2.3rc2-intel-18.0
+      - intel/18.0
+    - spec: "mvapich2@2.3rc2%gcc@7.2.0"
+      modules:
+      - mvapich2/2.3rc2-gcc-7.2.0
+  cmake: 
+    externals:
+    - spec: "cmake@3.26.5"
+      modules:
+      - cmake/3.26.5
+    - spec: "cmake@3.18.4"
+      modules:
+      - cmake/3.18.4
+    - spec: "cmake@3.12.0"
+      modules:
+      - cmake/3.12.0
+  anaconda2:
+    buildable: False
+    externals:
+    - spec: "anaconda2@2019.10"
+      modules:
+      - anaconda/2019-Oct/2
+  anaconda3:
+    buildable: False
+    externals:
+    - spec: "anaconda3@2024.10"
+      modules:
+      - anaconda3/2024.10
+    - spec: "anaconda3@2024.06"
+      modules:
+      - anaconda3/2024.06
+    - spec: "anaconda3@2020.07"
+      modules:
+      - anaconda/2020-Jul/3
+    - spec: "anaconda3@2019.10"
+      modules:
+      - anaconda/2019-Oct/3
+    - spec: "anaconda3@2018.12"
+      modules:
+      - anaconda/2018-Dec/3
+  r:
+    buildable: False
+    externals:
+    - spec: "r@4.5.1"
+      modules:
+      - R/4.5.1
+    - spec: "r@4.2.3"
+      modules:
+      - R/4.2.3
+    - spec: "r@4.0.2"
+      modules:
+      - R/4.0.2
+    - spec: "r@4.0.1"
+      modules:
+      - R/4.0.1
+    - spec: "r@3.6.2"
+      modules:
+      - R/3.6.2
+    - spec: "r@3.5.1"
+      modules:
+      - R/3.5.1
+  boost:
+    buildable: False
+    externals:
+    - spec: "boost@1.8.7"
+      modules:
+      - boost/1.8.7
+    - spec: "boost@1.71.0"
+      modules:
+      - boost/1.71.0
+    - spec: "boost@1.68.0"
+      modules:
+      - boost/1.68.0
+  cuda:
+    buildable: False
+    externals:
+    - spec: "cuda@12.8.0"
+      modules:
+      - cuda/12.8
+    - spec: "cuda@12.6.0"
+      modules:
+      - cuda/12.6
+    - spec: "cuda@12.4.0"
+      modules:
+      - cuda/12.4
+    - spec: "cuda@10.0.130"
+      modules:
+      - cuda/10.0
+    - spec: "cuda@10.2.89"
+      modules:
+      - cuda/.10.2
+    - spec: "cuda@11.1.1"
+      modules:
+      - cuda/.11.1
+    - spec: "cuda@11.6.2"
+      modules:
+      - cuda/.11.6
+    - spec: "cuda@11.7.1"
+      modules:
+      - cuda/.11.7
+    - spec: "cuda@9.2.88"
+      modules:
+      - cuda/9.2
+  #curl: There seems to be a version mismatch btwn whats on CC and whats available from Spack
+  #dos2unix: Same here
+  emacs:
+    buildable: False
+    externals:
+    - spec: "emacs@27.2"
+      modules:
+      - emacs/27.2
+    - spec: "emacs@27.1"
+      modules:
+      - emacs/27.1
+    - spec: "emacs@26.1"
+      modules:
+      - emacs/26.1
+  fftw:
+    buildable: False
+    externals:
+    - spec: "fftw@3.3.10%gcc@13.3.0"
+      modules:
+      - fftw/3.3.10/default
+    - spec: "fftw@3.3.8%intel@18.0 +mpi ^intel-mpi@2018.1.163"
+      modules:
+      - fftw-3.3.8/intel-18.0/intel_mpi-2018
+    - spec: "fftw@3.3.8%intel@18.0 +mpi ^mvapich2@2.3rc2"
+      modules:
+      - fftw-3.3.8/intel-18.0/mvapich2-2.3rc2
+    - spec: "fftw@3.3.8%intel@18.0 +mpi ^mvapich2@2.3"
+      modules:
+      - fftw-3.3.8/intel-18.0/mvapich2-2.3
+    - spec: "fftw@3.3.8%intel@18.0 +mpi ^openmpi@3.1.1"
+      modules:
+      - fftw-3.3.8/intel-18.0/openmpi-3.1.1
+    - spec: "fftw@3.3.8%gcc@7.2.0 +mpi ^mvapich2@2.3"
+      modules:
+      - fftw-3.3.8/gcc-7.2.0/mvapich2-2.3
+  gcc:
+    buildable: False
+    externals:
+    - spec: gcc@=13.3.0
+      modules:
+      - gcc/13.3.0
+    - spec: gcc@=12.4.0
+      modules:
+      - gcc/12.4.0
+  #git: version mismatch
+  gsl:
+    buildable: False
+    externals:
+    - spec: "gsl@2.8"
+      modules:
+      - gsl/2.8
+    - spec: "gsl@2.5"
+      modules:
+      - gsl/2.5
+  #hwloc: version mismatch
+  #libxml2: version mismatch
+  mathematica:
+    buildable: False
+    externals:
+    - spec: "mathematica@12.3.1"
+      modules:
+      - mathematica/12.3.1
+    - spec: "mathematica@12.0.0"
+      modules:
+      - mathematica/12
+    # There's also a version 11 modulefile, but spack doesn't support that
+  matlab:
+    buildable: False
+    externals:
+    - spec: "matlab@R2024a"
+      modules:
+      - matlab/24.1
+    - spec: "matlab@R2019b"
+      modules:
+      - matlab/9.7
+    - spec: "matlab@R2018b"
+      modules:
+      - matlab/9.5
+    # There's also an R2018a Modulefile, but spack doesn't support that
+    # There is only a matlab 24.1 on ICC so idk what it's @R2024a should actually be
+  #moab: version mismatch
+  mpfr:
+    buildable: False
+    externals:
+    - spec: "mpfr@4.2.1"
+      modules:
+      - mpfr/4.2.1
+    - spec: "mpfr@4.0.1"
+      modules:
+      - mpfr/4.0.1
+    - spec: "mpfr@3.1.4"
+      modules:
+      - mpfr/3.1.4
+  #nano: version mismatch
+  p7zip:
+    buildable: False
+    externals:
+    - spec: "p7zip@16.02"
+      modules:
+      - p7zip/16.02
+    # not on the ICC any more as module 10/8/2024
+  papi:
+    buildable: False
+    externals:
+    - spec: "papi@7.1.0"
+      modules:
+      - papi/7.1.0
+    - spec: "papi@5.6.0"
+      modules:
+      - papi/5.6.0
+  pcre:
+    buildable: False
+    externals:
+    - spec: "pcre@8.42"
+      modules:
+      - pcre/8.42
+      # not on the ICC any more as module 10/8/2024
+  #pcre2: version mismatch
+  petsc:
+    buildable: False
+    externals:
+    - spec: "petsc@3.11.1%intel@18.0"
+      modules:
+      - petsc/3.11.1-i
+    - spec: "petsc@3.11.1%gcc@7.2.0"
+      modules:
+      - petsc/3.11.1-g
+    - spec: "petsc@3.10.3%gcc@7.2.0"
+      modules:
+      - petsc/3.10.3-g
+    # Not sure what the other modulefile's compiler is
+    # not on the ICC any more as module 10/8/2024
+  python:
+    buildable: False
+    externals:
+    - spec: "python@3.13.2%gcc@13.3.0"
+      modules:
+      - python/3.13.2
+    - spec: "python@3.11.11%gcc@13.3.0"
+      modules:
+      - python/3.11.11
+    - spec: "python@3.10.16%gcc@13.3.0"
+      modules:
+      - python/3.10.16
+    - spec: "python@3.7.0%gcc@7.2.0"
+      modules:
+      - python/3
+    - spec: "python@2.7.15"
+      modules:
+      - python/2
+  #singularity: version mismatch
+  #sqlite: version mismatch
+  #subversion: version mismatch (how ironic)
+  texlive:
+    buildable: False
+    externals:
+    - spec: "texlive@202406"
+      modules:
+      - texlive/2024
+    - spec: "texlive@20190410"
+      modules:
+      - texlive/2019
+  tree:
+    buildable: False
+    externals:
+    - spec: "tree@2.2.1"
+      modules:
+      - tree/2.2.1
+    - spec: "tree@1.8.0"
+      modules:
+      - tree/1.8.0
+    - spec: "tree@1.7.0"
+      modules:
+      - tree/1.7.0
+  valgrind:
+    buildable: False
+    externals:
+    - spec: "valgrind@3.13.0"
+      modules:
+      - valgrind/3.13.0
+    # not on the ICC any more as module 10/8/2024
+  #vim: no idea what version is on CC 
+  xz:
+    buildable: False
+    externals:
+    - spec: "xz@5.2.2"
+      modules:
+      - xz/5.2.2
+      - xz-utils/5.2.2
+    # not on the ICC any more as module 10/8/2024

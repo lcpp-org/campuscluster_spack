@@ -1,0 +1,22 @@
+compilers:
+- compiler:
+    modules: [gcc/13.3.0]
+    paths:
+      c: /sw/apps/gcc/13.3.0/bin/gcc
+      cxx: /sw/apps/gcc/13.3.0/bin/g++
+      fortran: /sw/apps/gcc/13.3.0/bin/gfortran
+    spec: gcc@=13.3.0
+    target: x86_64
+    operating_system: rhel9
+- compiler:
+    modules: [gcc/12.4.0]
+    paths:
+      c: /sw/apps/gcc/12.4.0/bin/gcc
+      cxx: /sw/apps/gcc/12.4.0/bin/g++
+      fortran: /sw/apps/gcc/12.4.0/bin/gfortran
+    spec: gcc@=12.4.0
+    target: x86_64
+    operating_system: rhel9
+
+
+
