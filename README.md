@@ -31,7 +31,7 @@ The hpic2deps module provides an HDF5 installation that is compatible with h5py.
 After loading the module, you can install h5py with:
 
 ```bash
-module load hpic2deps/~openmp-cuda-arch-None/Release/latest
+module load hpic2deps/{Whichever Version To Be Used}/Release/latest
 pip install h5py
 ```
 
