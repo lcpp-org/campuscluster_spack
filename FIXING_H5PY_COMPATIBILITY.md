@@ -53,6 +53,10 @@ The same changes were applied to `campus_cluster_update_2.py`.
 
 1. **campuscluster_update.py** - Lines 328-333 added new environment variables
 2. **campus_cluster_update_2.py** - Lines 391-396 added new environment variables
+3. **campus_cluster_update_3_fixing_mpi_errors.py** - Lines 403-408 added new environment variables
+4. **campus_cluster_update_3_hypre_cuda.py** - Lines 360-365 added new environment variables
+
+All four update scripts now generate modulefiles with the complete set of HDF5 environment variables required by h5py.
 
 ## Testing
 

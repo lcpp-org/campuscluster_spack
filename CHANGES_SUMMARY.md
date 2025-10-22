@@ -16,11 +16,17 @@ Added 5 additional environment variables to the modulefile generation code in bo
 
 ## Changes Made
 
-### Code Changes (2 files)
+### Code Changes (4 files, 20 lines added)
 1. **campuscluster_update.py** (lines 328-333)
    - Added 5 new environment variable setters in modulefile template
    
 2. **campus_cluster_update_2.py** (lines 391-396)
+   - Added 5 new environment variable setters in modulefile template
+
+3. **campus_cluster_update_3_fixing_mpi_errors.py** (lines 403-408)
+   - Added 5 new environment variable setters in modulefile template
+
+4. **campus_cluster_update_3_hypre_cuda.py** (lines 360-365)
    - Added 5 new environment variable setters in modulefile template
 
 ### Documentation (2 files)
@@ -40,9 +46,10 @@ Added 5 additional environment variables to the modulefile generation code in bo
    - Added `__pycache__/` and `*.pyc` to prevent Python cache files from being committed
 
 ## Impact
-- **Minimal code changes**: Only 10 lines of code added across 2 files
+- **Minimal code changes**: Only 20 lines of code added across 4 files
 - **No breaking changes**: Existing functionality is preserved
 - **Backward compatible**: New environment variables don't interfere with existing builds
+- **Comprehensive coverage**: All update script variants now support h5py
 - **Well documented**: Comprehensive documentation for users and maintainers
 
 ## Verification
@@ -61,8 +68,9 @@ pip install h5py
 The h5py installation will now succeed because it can find the HDF5 libraries via the environment variables set by the module.
 
 ## Total Changes
-- Files modified: 5
-- Lines added: 129
+- Files modified: 7 (4 code files + 3 documentation files)
+- Lines of code added: 20
+- Lines of documentation added: 129
 - Lines removed: 0
-- New files: 1 (documentation)
+- New files: 2 (documentation)
 - Security issues: 0
