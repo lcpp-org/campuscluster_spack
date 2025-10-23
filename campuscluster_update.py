@@ -34,8 +34,8 @@ cuda_module = "cuda/12.8" #11.6
 python_module = "python/3.13.2"
 cmake_version = "3.26.5"
 
-openmp_options = [False] #[True, False]
-cuda_arch_options = [None] #[None, 70, 86, 90]
+openmp_options = [True, False]
+cuda_arch_options = [None, 70, 86, 90]
 build_types = ["Debug", "Release"] #["Debug", "Release"]
 
 
