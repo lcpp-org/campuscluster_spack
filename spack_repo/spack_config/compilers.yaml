@@ -11,7 +11,7 @@ compilers:
 - compiler:
     modules: [gcc/12.4.0]
     paths:
-      c: /sw/apps/gcc/12.4.0/bin/gcc
+      cc: /sw/apps/gcc/12.4.0/bin/gcc
       cxx: /sw/apps/gcc/12.4.0/bin/g++
       fortran: /sw/apps/gcc/12.4.0/bin/gfortran
     spec: gcc@=12.4.0
