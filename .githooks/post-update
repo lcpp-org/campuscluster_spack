@@ -9,7 +9,7 @@ exec git update-server-info
 
 # My Stuff
 # web repository directory
-REPO_DIR="${git rev-parse --show-toplevel}"
+REPO_DIR=${git rev-parse --show-toplevel}
 
 echo
 echo "---"
