@@ -1,3 +1,5 @@
 config.log
 lcpp-spack-repo/packages/hpic2deps/__pycache__
+__pycache__/
+*.pyc
 

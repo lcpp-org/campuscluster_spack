@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# default owner user
+OWNER="a+rwx"
+
+# web repository directory
+REPO_DIR="${git rev-parse --show-toplevel}"
+
+echo
+echo "---"
+echo "--- Resetting ownership to ${OWNER} on ${REPO_DIR}"
+
+sudo chown -R $OWNER $REPO_DIR
+
+echo "--- Done"
+echo "---"

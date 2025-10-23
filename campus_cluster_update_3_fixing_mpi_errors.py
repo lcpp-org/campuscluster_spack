@@ -401,6 +401,8 @@ prepend-path --delim {{:}} PATH {{{build_dependent_dir_path}/hdf5_dev/install/bi
 prepend-path --delim {{:}} CMAKE_PREFIX_PATH {{{build_dependent_dir_path}/hdf5_dev/install/.}}
 append-path --delim {{:}} LD_LIBRARY_PATH {{{build_dependent_dir_path}/hdf5_dev/install/lib}}
 setenv HDF5_ROOT {{{build_dependent_dir_path}/hdf5_dev/install}}
+setenv HDF5_DIR {{{build_dependent_dir_path}/hdf5_dev/install}}
+setenv HDF5_MPI ON
 
     """
 
