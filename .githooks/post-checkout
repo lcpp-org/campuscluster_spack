@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# web repository directory
+REPO_DIR="${git rev-parse --show-toplevel}"
+
+echo
+echo "---"
+echo "--- Resetting ownership to ${OWNER} on ${REPO_DIR}"
+
+sudo chmod -Rfv a+rwx $REPO_DIR
+
+echo "--- Done"
+echo "---"
