@@ -5,9 +5,9 @@ REPO_DIR=$(git rev-parse --show-toplevel)
 
 echo
 echo "---"
-echo "--- Resetting ownership to ${OWNER} on ${REPO_DIR}"
+echo "--- setting ownership to a+rwx on ${REPO_DIR}"
 
-chmod -Rfv a+rwx $REPO_DIR
+chmod -R a+rwx $REPO_DIR
 
 echo "--- Done"
 echo "---"
