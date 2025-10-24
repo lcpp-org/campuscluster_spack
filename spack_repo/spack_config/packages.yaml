@@ -233,18 +233,18 @@ packages:
       - pcre/8.42
       # not on the ICC any more as module 10/8/2024
   #pcre2: version mismatch
-  petsc:
-    buildable: False
-    externals:
-    - spec: "petsc@3.11.1%intel@18.0"
-      modules:
-      - petsc/3.11.1-i
-    - spec: "petsc@3.11.1%gcc@7.2.0"
-      modules:
-      - petsc/3.11.1-g
-    - spec: "petsc@3.10.3%gcc@7.2.0"
-      modules:
-      - petsc/3.10.3-g
+  #petsc:
+  #  buildable: False
+  #  externals:
+  #  - spec: "petsc@3.11.1%intel@18.0"
+  #    modules:
+  #    - petsc/3.11.1-i
+  #  - spec: "petsc@3.11.1%gcc@7.2.0"
+  #    modules:
+  #    - petsc/3.11.1-g
+  #  - spec: "petsc@3.10.3%gcc@7.2.0"
+  #    modules:
+  #    - petsc/3.10.3-g
     # Not sure what the other modulefile's compiler is
     # not on the ICC any more as module 10/8/2024
   python:
