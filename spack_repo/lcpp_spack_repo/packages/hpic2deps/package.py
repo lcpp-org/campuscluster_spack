@@ -28,7 +28,6 @@ class Hpic2deps(BundlePackage):
     version('main')
 
     depends_on('mpi')
-    depends_on('gcc')
     depends_on('cmake@3.26.5:')
     depends_on('kokkos@:4.7.00')
     depends_on('spdlog')
