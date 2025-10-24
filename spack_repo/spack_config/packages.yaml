@@ -6,27 +6,6 @@ packages:
     - spec: "openmpi@5.0.1%gcc@13.3.0"
       modules:
       - openmpi/5.0.1-gcc-13.3.0
-    - spec: "openmpi@4.1.4%gcc@8.2.0"
-      modules:
-      - openmpi/4.1.4-gcc-8.2.0
-    - spec: "openmpi@4.1.0%gcc@7.2.0+pmi"
-      modules:
-      - openmpi/4.1.0-gcc-7.2.0-pmi2
-    - spec: "openmpi@4.1.0%gcc@7.2.0"
-      modules:
-      - openmpi/4.1.0-gcc-7.2.0
-    - spec: "openmpi@4.0.5%intel@18.0"
-      modules:
-      - openmpi/4.0.5-intel-18.0
-    - spec: "openmpi@4.0.5%gcc@7.2.0"
-      modules:
-      - openmpi/4.0.5-gcc-7.2.0
-    - spec: "openmpi@3.1.1%intel@18.0"
-      modules:
-      - openmpi/3.1.1-intel-18.0
-    - spec: "openmpi@3.1.1%gcc@7.2.0"
-      modules:
-      - openmpi/3.1.1-gcc-7.2.0
   # I can't get intel-mpi to work
   intel-mpi:
     externals:
@@ -47,44 +26,11 @@ packages:
     - spec: "mvapich2@2.3.7%gcc@13.3.0"
       modules:
       - mvapich2/2.3.7-gcc-13.3.0
-    - spec: "mvapich2@2.3.6%gcc@7.2.0"
-      modules:
-      - mvapich2/2.3.6-gcc-7.2.0
-    - spec: "mvapich2@2.3.4%intel@18.0" # I can't get any of the mvapich2 intel ones working either
-      modules:
-      - mvapich2/2.3.4-intel-18.0_PMI2
-      - intel/18.0
-    - spec: "mvapich2@2.3.5%gcc@7.2.0"
-      modules:
-      - mvapich2/2.3.5-gcc-7.2.0-pmi2
-    - spec: "mvapich2@2.3.4%gcc@7.2.0"
-      modules:
-      - mvapich2/2.3.4-gcc-7.2.0_PMI2
-    - spec: "mvapich2@2.3%intel@18.0"
-      modules:
-      - mvapich2/2.3-intel-18.0
-      - intel/18.0
-    - spec: "mvapich2@2.3%gcc@7.2.0"
-      modules:
-      - mvapich2/2.3-gcc-7.2.0
-    - spec: "mvapich2@2.3rc2%intel@18.0"
-      modules:
-      - mvapich2/2.3rc2-intel-18.0
-      - intel/18.0
-    - spec: "mvapich2@2.3rc2%gcc@7.2.0"
-      modules:
-      - mvapich2/2.3rc2-gcc-7.2.0
   cmake: 
     externals:
     - spec: "cmake@3.26.5"
       modules:
-      - cmake/3.26.5
-    - spec: "cmake@3.18.4"
-      modules:
-      - cmake/3.18.4
-    - spec: "cmake@3.12.0"
-      modules:
-      - cmake/3.12.0
+      - cmake/3.26.5/cmake
   anaconda2:
     buildable: False
     externals:
@@ -221,13 +167,13 @@ packages:
           fc: '/sw/apps/gcc/13.3.0/bin/gfortran'
     - spec: gcc@12.4.0
       modules:
-      - gcc/12.4.0
-    - spec: gcc@=8.2.0
-      modules:
-      - gcc/8.2.0
-    - spec: gcc@=7.2.0
-      modules:
-      - gcc/7.2.0
+      - gcc/12.4.0 languages:='c,c++,fortran'
+      extra_attributes:
+        compilers:
+          cc: '/sw/apps/gcc/12.4.0/bin/gcc'
+          cxx: '/sw/apps/gcc/12.4.0/bin/g++'
+          f77: '/sw/apps/gcc/12.4.0/bin/gfortran'
+          fc: '/sw/apps/gcc/12.4.0/bin/gfortran'
   #git: version mismatch
   gsl:
     buildable: False
