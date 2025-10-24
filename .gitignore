@@ -8,3 +8,5 @@ __pycache__/
 builds/
 modulefiles/
 cmake/
+output_update_spack_py.log
+output_update_spack_py.pid
