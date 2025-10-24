@@ -138,21 +138,6 @@ packages:
     - spec: "fftw@3.3.10%gcc@13.3.0"
       modules:
       - fftw/3.3.10/default
-    - spec: "fftw@3.3.8%intel@18.0 +mpi ^intel-mpi@2018.1.163"
-      modules:
-      - fftw-3.3.8/intel-18.0/intel_mpi-2018
-    - spec: "fftw@3.3.8%intel@18.0 +mpi ^mvapich2@2.3rc2"
-      modules:
-      - fftw-3.3.8/intel-18.0/mvapich2-2.3rc2
-    - spec: "fftw@3.3.8%intel@18.0 +mpi ^mvapich2@2.3"
-      modules:
-      - fftw-3.3.8/intel-18.0/mvapich2-2.3
-    - spec: "fftw@3.3.8%intel@18.0 +mpi ^openmpi@3.1.1"
-      modules:
-      - fftw-3.3.8/intel-18.0/openmpi-3.1.1
-    - spec: "fftw@3.3.8%gcc@7.2.0 +mpi ^mvapich2@2.3"
-      modules:
-      - fftw-3.3.8/gcc-7.2.0/mvapich2-2.3
   gcc:
     buildable: False
     externals:
