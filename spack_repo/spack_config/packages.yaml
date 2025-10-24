@@ -207,6 +207,21 @@ packages:
     - spec: "fftw@3.3.8%gcc@7.2.0 +mpi ^mvapich2@2.3"
       modules:
       - fftw-3.3.8/gcc-7.2.0/mvapich2-2.3
+  gcc:
+    buildable: False
+    externals:
+    - spec: gcc@=13.3.0
+      modules:
+      - gcc/13.3.0
+    - spec: gcc@=12.4.0
+      modules:
+      - gcc/12.4.0
+    - spec: gcc@=8.2.0
+      modules:
+      - gcc/8.2.0
+    - spec: gcc@=7.2.0
+      modules:
+      - gcc/7.2.0
   #git: version mismatch
   gsl:
     buildable: False
