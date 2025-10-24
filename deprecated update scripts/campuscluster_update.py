@@ -303,6 +303,15 @@ mkdir {dir_name}
 cd {dir_name}
 
 git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git #git@github.com:lcpp-org/hpic2.git
+
+# Patch hpic2 source files to add missing #include <iterator>
+cd hpic2
+sed -i '2a #include <iterator>' core/magnetic_field/BFromFile.cpp
+sed -i '2a #include <iterator>' core/utils/hpic_utils.cpp
+sed -i '2a #include <iterator>' core/species/FullOrbitICFromFile.cpp
+sed -i '2a #include <iterator>' core/species/FullOrbitVolumetricSourceMinimumMassFromFile.cpp
+cd ..
+
 mkdir build && cd build
 #cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
 cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON
