@@ -35,7 +35,7 @@ python_module = "python/3.13.2"
 cmake_version = "3.26.5"
 
 openmp_options = [True, False]
-cuda_arch_options = [None, 70, 86, 90]
+cuda_arch_options = [None] #[None, 70, 86, 90]
 build_types = ["Debug", "Release"] #["Debug", "Release"]
 
 
@@ -113,7 +113,7 @@ prepend-path --delim {{:}} CMAKE_PREFIX_PATH {{{top_level_dir}/cmake/install/.}}
     num_build_cores = len(os.sched_getaffinity(0))
 
     # Delete old versions of builds if the number exceeds this
-    num_versions_kept = 3
+    num_versions_kept = 1
 
     current_datetime = datetime.datetime.now()
     datetime_format = '%Y-%m-%d'
@@ -391,9 +391,18 @@ mkdir {dir_name}
 cd {dir_name}
 
 git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git #git@github.com:lcpp-org/hpic2.git
+
+# Patch hpic2 source files to add missing #include <iterator>
+cd hpic2
+sed -i '2a #include <iterator>' core/magnetic_field/BFromFile.cpp
+sed -i '2a #include <iterator>' core/utils/hpic_utils.cpp
+sed -i '2a #include <iterator>' core/species/FullOrbitICFromFile.cpp
+sed -i '2a #include <iterator>' core/species/FullOrbitVolumetricSourceMinimumMassFromFile.cpp
+cd ..
+
 mkdir build && cd build
-#cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
-cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_MFEM=ON -DWITH_PUMIMBBL=OFF
+cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
+#cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_MFEM=ON -DWITH_PUMIMBBL=OFF
 make -j{num_build_cores}
 
         """
