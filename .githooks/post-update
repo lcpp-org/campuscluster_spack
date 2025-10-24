@@ -13,7 +13,7 @@ REPO_DIR=$(git rev-parse --show-toplevel)
 echo "---"
 echo "--- setting ownership to u=rwx,g=rwx,o=r on ${REPO_DIR}"
 
-find $REPO_DIR -perm /u=rwx,g=rwx,o=r -exec chmod -R u=rwx,g=rwx,o=r {} +
+(sh -c "find $REPO_DIR -perm /u=rwx,g=rwx,o=r -exec chmod -R u=rwx,g=rwx,o=r {} +") &
 
 echo "--- Done"
 echo "---"
