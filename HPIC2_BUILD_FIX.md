@@ -41,7 +41,6 @@ The following update scripts have been patched:
 - `campus_cluster_update_2.py`
 - `campus_cluster_update_3_fixing_mpi_errors.py`
 - `campus_cluster_update_3_hypre_cuda.py`
-- `deprecated update scripts/campuscluster_update.py`
 
 ## Impact
 
