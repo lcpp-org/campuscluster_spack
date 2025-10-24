@@ -214,7 +214,7 @@ packages:
       modules:
       - gcc/13.3.0
       extra_attributes:
-        paths:
+        compilers:
           cc: '/sw/apps/gcc/13.3.0/bin/gcc'
           cxx: '/sw/apps/gcc/13.3.0/bin/g++'
           f77: '/sw/apps/gcc/13.3.0/bin/gfortran'
