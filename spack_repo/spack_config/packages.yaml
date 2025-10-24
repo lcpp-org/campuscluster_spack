@@ -210,10 +210,10 @@ packages:
   gcc:
     buildable: False
     externals:
-    - spec: gcc@=13.3.0
+    - spec: gcc@13.3.0
       modules:
       - gcc/13.3.0
-    - spec: gcc@=12.4.0
+    - spec: gcc@12.4.0
       modules:
       - gcc/12.4.0
     - spec: gcc@=8.2.0
