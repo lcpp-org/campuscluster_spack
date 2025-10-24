@@ -259,12 +259,6 @@ packages:
     - spec: "python@3.10.16%gcc@13.3.0"
       modules:
       - python/3.10.16
-    - spec: "python@3.7.0%gcc@7.2.0"
-      modules:
-      - python/3
-    - spec: "python@2.7.15"
-      modules:
-      - python/2
   #singularity: version mismatch
   #sqlite: version mismatch
   #subversion: version mismatch (how ironic)
