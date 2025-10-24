@@ -8,14 +8,12 @@
 exec git update-server-info
 
 # My Stuff
-# web repository directory
+# Repository directory
 REPO_DIR=$(git rev-parse --show-toplevel)
-
-echo
 echo "---"
-echo "--- setting ownership to a+rwx on ${REPO_DIR}"
+echo "--- setting ownership to u=rwx,g=rwx,o=r on ${REPO_DIR}"
 
-chmod -R a+rwx $REPO_DIR
+find $REPO_DIR -perm /u=rwx,g=rwx,o=r -exec chmod -R u=rwx,g=rwx,o=r {} +
 
 echo "--- Done"
 echo "---"
