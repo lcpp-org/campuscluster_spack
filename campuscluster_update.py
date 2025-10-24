@@ -34,7 +34,7 @@ cuda_module = "cuda/12.8" #11.6
 python_module = "python/3.13.2"
 cmake_version = "3.26.5"
 
-openmp_options = [False] #[True, False]
+openmp_options = [True, False]
 cuda_arch_options = [None] #[None, 70, 86, 90]
 build_types = ["Debug", "Release"] #["Debug", "Release"]
 
@@ -401,8 +401,8 @@ sed -i '2a #include <iterator>' core/species/FullOrbitVolumetricSourceMinimumMas
 cd ..
 
 mkdir build && cd build
-#cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
-cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_MFEM=ON -DWITH_PUMIMBBL=OFF
+cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
+#cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_MFEM=ON -DWITH_PUMIMBBL=OFF
 make -j{num_build_cores}
 
         """
