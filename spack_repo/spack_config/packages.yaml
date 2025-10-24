@@ -210,9 +210,15 @@ packages:
   gcc:
     buildable: False
     externals:
-    - spec: gcc@13.3.0
+    - spec: gcc@13.3.0 languages:='c,c++,fortran'
       modules:
       - gcc/13.3.0
+      extra_attributes:
+        paths:
+          cc: /sw/apps/gcc/13.3.0/bin/gcc
+          cxx: /sw/apps/gcc/13.3.0/bin/g++
+          f77: /sw/apps/gcc/13.3.0/bin/gfortran
+          fc: /sw/apps/gcc/13.3.0/bin/gfortran
     - spec: gcc@12.4.0
       modules:
       - gcc/12.4.0
