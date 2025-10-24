@@ -10,6 +10,7 @@ echo "- $PWD/spack_repo/lcpp_spack_repo" >> ../spack/etc/spack/repos.yaml
 rm -f ~/.spack/packages.yaml
 rm -f ~/.spack/linux/compilers.yaml
 rm -f ~/.spack/compilers.yaml
+rm -f ~/.spack/packages.yaml
 #cp spack_repo/spack_config/compilers.yaml ~/.spack/bootstrap/config/linux/compilers.yaml
 sh install_hpic2deps.sh
 spack module tcl refresh --delete-tree -y
