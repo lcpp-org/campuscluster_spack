@@ -199,6 +199,9 @@ cd {top_level_dir}/builds/{dir_name}
 mkdir hypre_dev
 cd hypre_dev
 git clone https://github.com/hypre-space/hypre.git #git@github.com:hypre-space/hypre.git
+cd hypre
+git checkout tags/v2.29.0
+cd ..
 cd hypre/src
 ./configure 
 make -j{num_build_cores}
