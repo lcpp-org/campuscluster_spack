@@ -460,6 +460,14 @@ sed -i '2a #include <iterator>' core/magnetic_field/BFromFile.cpp
 sed -i '2a #include <iterator>' core/utils/hpic_utils.cpp
 sed -i '2a #include <iterator>' core/species/FullOrbitICFromFile.cpp
 sed -i '2a #include <iterator>' core/species/FullOrbitVolumetricSourceMinimumMassFromFile.cpp
+
+# Patch CMakeLists.txt to link cublas when CUDA is enabled
+if grep -q "find_package(CUDA" CMakeLists.txt; then
+    echo 'if(CUDA_FOUND)' >> CMakeLists.txt
+    echo '    target_link_libraries(hpic2 PRIVATE \${{CUDA_CUBLAS_LIBRARIES}})' >> CMakeLists.txt
+    echo 'endif()' >> CMakeLists.txt
+fi
+
 cd ..
 
 mkdir build && cd build
