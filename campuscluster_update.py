@@ -236,7 +236,9 @@ cd {top_level_dir}/builds/{dir_name}
 # install mfem
 mkdir mfem_dev && cd mfem_dev
 git clone https://github.com/mfem/mfem.git #git@github.com:mfem/mfem.git
+cd mfem
 git checkout tags/v4.5.2
+cd ..
 mkdir build && cd build
 {mfem_cmake_cmd}
 make -j{num_build_cores}
