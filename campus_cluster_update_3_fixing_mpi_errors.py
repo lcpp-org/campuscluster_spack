@@ -488,7 +488,7 @@ cd ..
 
 mkdir build && cd build
 #cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
-cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON
+cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DHDF5_DIR=../../hdf5_dev/install
 make -j{num_build_cores}
 
         """
