@@ -35,7 +35,7 @@ python_module = "python/3.13.2"
 cmake_version = "3.26.5"
 
 openmp_options = [True] # [True, False]
-cuda_arch_options = [70] #[None, 70, 86, 90]
+cuda_arch_options = [None] #[None, 70, 86, 90]
 build_types = ["Debug", "Release"] #["Debug", "Release"]
 
 
@@ -239,13 +239,13 @@ cd {top_level_dir}/builds/{dir_name}
 # install mfem
 mkdir mfem_dev && cd mfem_dev
 git clone https://github.com/mfem/mfem.git #git@github.com:mfem/mfem.git
-cd mfem
-git checkout tags/v4.5.2
 
+#cd mfem
+#git checkout tags/v4.5.2
 # Patch mfem source to add missing #include <cstdint>
-sed -i '27a #include <cstdint>' general/mem_manager.cpp
+#sed -i '27a #include <cstdint>' general/mem_manager.cpp
+#cd ..
 
-cd ..
 mkdir build && cd build
 {mfem_cmake_cmd}
 make -j{num_build_cores}
