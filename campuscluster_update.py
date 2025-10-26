@@ -241,6 +241,10 @@ mkdir mfem_dev && cd mfem_dev
 git clone https://github.com/mfem/mfem.git #git@github.com:mfem/mfem.git
 cd mfem
 git checkout tags/v4.5.2
+
+# Patch mfem source to add missing #include <cstdint>
+sed -i '27a #include <cstdint>' general/mem_manager.cpp
+
 cd ..
 mkdir build && cd build
 {mfem_cmake_cmd}
