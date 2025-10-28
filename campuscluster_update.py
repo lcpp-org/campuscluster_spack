@@ -160,7 +160,7 @@ prepend-path --delim {{:}} CMAKE_PREFIX_PATH {{{top_level_dir}/cmake/install/.}}
                 mfem_cmake_cmd += f" -DMFEM_USE_OPENMP=YES"
 
             if cuda_enabled:
-                module('load', cuda_module)
+                module('--ignore_cache', 'load', cuda_module)
             else:
                 module('unload', cuda_module)
             
@@ -338,6 +338,7 @@ append-path --delim {{:}} LD_LIBRARY_PATH {{{build_dir_path}/hdf5_dev/install/li
 setenv HDF5_ROOT {{{build_dir_path}/hdf5_dev/install}}
 setenv HDF5_DIR {{{build_dir_path}/hdf5_dev/install}}
 setenv HDF5_MPI ON
+setenv CUDA_HOME {{/sw/apps/{cuda_module}}} 
 
             """
 
