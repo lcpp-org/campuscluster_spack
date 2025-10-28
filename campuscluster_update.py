@@ -418,7 +418,7 @@ fi
 cd ..
 
 mkdir build && cd build
-cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON -DHDF5_DIR=../../hdf5_dev/install -DCMAKE_EXE_LINKER_FLAGS="-lcublas"
+cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON -DHDF5_DIR=../../hdf5_dev/install -DCMAKE_EXE_LINKER_FLAGS="-L\$CUDA_HOME/lib64 -lcublas"
 #cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_MFEM=ON -DWITH_PUMIMBBL=OFF
 make -j{num_build_cores}
 
