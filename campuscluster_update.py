@@ -67,6 +67,7 @@ echo CMAKE Original CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpicc` mpi
 export CC=`which gcc`
 export CXX=`which g++`
 export FC=`which gfortran`
+export CUDA_HOME=`which nvcc | sed 's:/bin/nvcc::'`
 echo CMAKE Changed CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpicc` mpicxx `which mpicxx` mpif90 `which mpif90`
 
 mkdir cmake && cd cmake
@@ -95,6 +96,7 @@ conflict cmake
 prepend-path --delim {{:}} PATH {{{top_level_dir}/cmake/install/bin}}
 prepend-path --delim {{:}} ACLOCAL_PATH {{{top_level_dir}/cmake/install/share/aclocal}}
 prepend-path --delim {{:}} CMAKE_PREFIX_PATH {{{top_level_dir}/cmake/install/.}}
+setenv CUDA_HOME {{/sw/apps/{cuda_module}}}
 
         """
         if not os.path.exists(f'{top_level_dir}/modulefiles/cmake'):
@@ -176,6 +178,7 @@ echo Build Script Original CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpi
 export CC=`which gcc`
 export CXX=`which g++`
 export FC=`which gfortran`
+{"export CUDA_HOME=`which nvcc | sed 's:/bin/nvcc::'`" if cuda_enabled else ''}
 echo Build Script Changed CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpicc` mpicxx `which mpicxx` mpif90 `which mpif90`
 
 cd builds
