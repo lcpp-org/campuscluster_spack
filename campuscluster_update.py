@@ -34,8 +34,8 @@ cuda_module = "cuda/12.8" #11.6
 python_module = "python/3.13.2"
 cmake_version = "3.26.5"
 
-openmp_options = [True, False]
-cuda_arch_options = [None, 70, 86, 90]
+openmp_options = [False, True] # [True, False]
+cuda_arch_options = [None, 70] #[None, 70, 86, 90]
 build_types = ["Debug", "Release"] #["Debug", "Release"]
 
 
@@ -67,6 +67,7 @@ echo CMAKE Original CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpicc` mpi
 export CC=`which gcc`
 export CXX=`which g++`
 export FC=`which gfortran`
+export CUDA_HOME=`which nvcc | sed 's:/bin/nvcc::'`
 echo CMAKE Changed CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpicc` mpicxx `which mpicxx` mpif90 `which mpif90`
 
 mkdir cmake && cd cmake
@@ -95,6 +96,7 @@ conflict cmake
 prepend-path --delim {{:}} PATH {{{top_level_dir}/cmake/install/bin}}
 prepend-path --delim {{:}} ACLOCAL_PATH {{{top_level_dir}/cmake/install/share/aclocal}}
 prepend-path --delim {{:}} CMAKE_PREFIX_PATH {{{top_level_dir}/cmake/install/.}}
+setenv CUDA_HOME {{/sw/apps/{cuda_module}}}
 
         """
         if not os.path.exists(f'{top_level_dir}/modulefiles/cmake'):
@@ -113,7 +115,7 @@ prepend-path --delim {{:}} CMAKE_PREFIX_PATH {{{top_level_dir}/cmake/install/.}}
     num_build_cores = len(os.sched_getaffinity(0))
 
     # Delete old versions of builds if the number exceeds this
-    num_versions_kept = 3
+    num_versions_kept = 1
 
     current_datetime = datetime.datetime.now()
     datetime_format = '%Y-%m-%d'
@@ -160,7 +162,7 @@ prepend-path --delim {{:}} CMAKE_PREFIX_PATH {{{top_level_dir}/cmake/install/.}}
                 mfem_cmake_cmd += f" -DMFEM_USE_OPENMP=YES"
 
             if cuda_enabled:
-                module('load', cuda_module)
+                module('--ignore_cache', 'load', cuda_module)
             else:
                 module('unload', cuda_module)
             
@@ -176,6 +178,7 @@ echo Build Script Original CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpi
 export CC=`which gcc`
 export CXX=`which g++`
 export FC=`which gfortran`
+{"export CUDA_HOME=`which nvcc | sed 's:/bin/nvcc::'`" if cuda_enabled else ''}
 echo Build Script Changed CC compiler $CC C++ $CXX Fortran $FC mpicc `which mpicc` mpicxx `which mpicxx` mpif90 `which mpif90`
 
 cd builds
@@ -199,6 +202,9 @@ cd {top_level_dir}/builds/{dir_name}
 mkdir hypre_dev
 cd hypre_dev
 git clone https://github.com/hypre-space/hypre.git #git@github.com:hypre-space/hypre.git
+cd hypre
+git checkout tags/v2.29.0
+cd ..
 cd hypre/src
 ./configure 
 make -j{num_build_cores}
@@ -236,7 +242,13 @@ cd {top_level_dir}/builds/{dir_name}
 # install mfem
 mkdir mfem_dev && cd mfem_dev
 git clone https://github.com/mfem/mfem.git #git@github.com:mfem/mfem.git
-git checkout tags/v4.5.2
+
+#cd mfem
+#git checkout tags/v4.5.2
+# Patch mfem source to add missing #include <cstdint>
+#sed -i '27a #include <cstdint>' general/mem_manager.cpp
+#cd ..
+
 mkdir build && cd build
 {mfem_cmake_cmd}
 make -j{num_build_cores}
@@ -329,6 +341,7 @@ append-path --delim {{:}} LD_LIBRARY_PATH {{{build_dir_path}/hdf5_dev/install/li
 setenv HDF5_ROOT {{{build_dir_path}/hdf5_dev/install}}
 setenv HDF5_DIR {{{build_dir_path}/hdf5_dev/install}}
 setenv HDF5_MPI ON
+setenv CUDA_HOME {{/sw/apps/{cuda_module}}} 
 
             """
 
@@ -391,9 +404,26 @@ mkdir {dir_name}
 cd {dir_name}
 
 git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git #git@github.com:lcpp-org/hpic2.git
+
+# Patch hpic2 source files to add missing #include <iterator>
+cd hpic2
+sed -i '2a #include <iterator>' core/magnetic_field/BFromFile.cpp
+sed -i '2a #include <iterator>' core/utils/hpic_utils.cpp
+sed -i '2a #include <iterator>' core/species/FullOrbitICFromFile.cpp
+sed -i '2a #include <iterator>' core/species/FullOrbitVolumetricSourceMinimumMassFromFile.cpp
+
+# Patch CMakeLists.txt to link cublas when CUDA is enabled
+if grep -q "find_package(CUDA" CMakeLists.txt; then
+    echo 'if(CUDA_FOUND)' >> CMakeLists.txt
+    echo '    target_link_libraries(hpic2 PRIVATE \${{CUDA_CUBLAS_LIBRARIES}})' >> CMakeLists.txt
+    echo 'endif()' >> CMakeLists.txt
+fi
+
+cd ..
+
 mkdir build && cd build
-#cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON
-cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_MFEM=ON -DWITH_PUMIMBBL=OFF
+cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_PUMIMBBL=ON -DWITH_MFEM=ON -DHDF5_DIR=../../hdf5_dev/install -DCMAKE_EXE_LINKER_FLAGS="-L\$CUDA_HOME/lib64 -lcublas"
+#cmake ../hpic2 -DWITH_RUSTBCA=ON -DWITH_MFEM=ON -DWITH_PUMIMBBL=OFF
 make -j{num_build_cores}
 
         """
