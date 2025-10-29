@@ -1,7 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=DTRA_Campuscluster_Update
 #SBATCH --output=/projects/illinois/grants/dtra_ura_msee/share/Outputs/output_update_spack_py_%x_output.txt
-#SBATCH --error=/projects/illinois/grants/dtra_ura_msee/share/Outputs/output_update_spack_py_%x_error.txt
 #SBATCH --time=4:00:00
 #SBATCH --exclude=ccc0465
 #SBATCH --ntasks=1
